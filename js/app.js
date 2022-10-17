@@ -13,3 +13,34 @@ function genaratePin() {
 
     document.getElementById('display-pin').value = pin;
 }
+
+document.getElementById('calculator').addEventListener('click', function(event) {
+    const number = event.target.innerText;
+    const calcInput = document.getElementById('typed-numbers');
+    if (isNaN(number)) {
+        if (number == 'C') {
+            calcInput.value = '';
+        }
+    } else {
+        const previousNumber = calcInput.value;
+        const newNumber = previousNumber + number;
+        calcInput.value = newNumber;
+    }
+
+});
+
+function verifyPin() {
+    const pin = document.getElementById('display-pin').value;
+    const typedNumbers = document.getElementById('typed-numbers').value;
+    const successMessage = document.getElementById('pin-success');
+    const failError = document.getElementById('pin-failure');
+    if (pin == typedNumbers) {
+        successMessage.style.display = 'block';
+        failError.style.display = 'none';
+    } else {
+
+        failError.style.display = 'block';
+        successMessage.style.display = 'none';
+    }
+
+}
